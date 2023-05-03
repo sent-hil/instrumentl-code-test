@@ -12,7 +12,6 @@ services:
     env: ruby
     buildCommand: cd api && bundle install
     startCommand: cd api && bundle exec puma -C config/puma.rb
-    healthCheckPath: /
     plan: starter
     envVars:
       - key: DATABASE_URL
@@ -35,3 +34,5 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: API_KEY
+        value: https://instrumentl-api.onrender.com

@@ -1,24 +1,24 @@
-# README
+# API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Rails app serves as JSON API backend to AskPDF app. The most interesting part is `AnsweringService`.
 
-Things you may want to cover:
+It has three endpoints:
 
-* Ruby version
+* /resources
+* /resources/:slug
+* /query
 
-* System dependencies
 
-* Configuration
+## Installation
 
-* Database creation
+```
+$ rbenv install 3.1.0` # or some other equivalent Ruby
+$ bundle
+```
 
-* Database initialization
+## Run
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ rake db:create rake db:migrate
+$ bundle exec rails s
+```

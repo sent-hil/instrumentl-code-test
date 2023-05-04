@@ -13,7 +13,7 @@ class QueryController < ApplicationController
     render status: :ok,
            json: { error: nil, response: result }
   rescue => e
-    puts(">>>>>>>>", e)
+    puts(">>>>>>>> ERROR:", e)
 
     render status: :internal_server_error,
       json: { error: e.class.name, response: nil }

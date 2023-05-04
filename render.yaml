@@ -10,8 +10,8 @@ services:
     name: instrumentl-api
     region: ohio
     env: ruby
-    buildCommand: cd api && bundle install
-    startCommand: cd api && bundle exec puma -C config/puma.rb
+    buildCommand: "cd api && ./bin/render-build.sh"
+    startCommand: "cd api && bundle exec puma -C config/puma.rb"
     plan: starter
     envVars:
       - key: DATABASE_URL

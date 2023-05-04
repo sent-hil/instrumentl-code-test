@@ -18,7 +18,9 @@ def init_vectordb():
 def ensure_index(index_name, index_dimensions):
     indexes = pinecone.list_indexes()
     if index_name not in indexes:
-        print(f"Pinecone index: {index_name} not created. Creating...")
+        print(
+            f"Pinecone index: {index_name} not created. Creating...This can take up to 10 minutes."
+        )
         pinecone.create_index(index_name, dimension=index_dimensions)
 
 

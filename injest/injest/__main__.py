@@ -46,7 +46,6 @@ def split_text_into_chunks(
 def save_embeddings(texts, metadatas):
     split_texts = split_text_into_chunks(texts, metadatas)
 
-    breakpoint()
     print(f"\tSplit into {len(split_texts)} chunks.")
 
     add_to_vectordb(split_texts, embeddings())
@@ -75,9 +74,8 @@ def process_pdf(path):
 
     save_embeddings(pdf_contents, metadatas)
 
-    front_of_pdf = " ".join(x for x in pdf_contents[0:10])
-    q = get_questions(front_of_pdf)
-    print(q)
+    front_of_pdf = " ".join(x for x in pdf_contents)[0:20000]
+    get_questions(front_of_pdf)
 
 
 if __name__ == "__main__":
@@ -92,4 +90,3 @@ if __name__ == "__main__":
             print(f"Processed {pdf_path}.\n")
         except Exception as ex:
             print(f"\tSomething went wrong, processing {pdf_path}.\n")
-            raise (ex)

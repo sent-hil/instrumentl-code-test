@@ -6,7 +6,7 @@ class Resource < ApplicationRecord
 
   validates :slug, presence: true
   validates :name, presence: true
-  validates :summary, presence: true
+  validates :url, presence: true
 
   before_validation(on: :create) do
     self.slug = name.gsub!(/\W/, '').downcase

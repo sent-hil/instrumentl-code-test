@@ -10,6 +10,6 @@ class ResourcesController < ApplicationController
                .where(slug: params[:slug])
                .first
 
-    render json: resource.to_json(only: %i[slug name summary], include: :faqs)
+    render json: resource.to_json(only: %i[slug name url], include: :faqs)
   end
 end

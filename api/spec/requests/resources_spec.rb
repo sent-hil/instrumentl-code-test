@@ -20,7 +20,7 @@ RSpec.describe 'Resources', type: :request do
       get "/resources/#{r.slug}"
 
       body = JSON.parse(response.body)
-      expect(body.keys.sort).to eq(%w[slug name summary faqs].sort)
+      expect(body.keys.sort).to eq(%w[slug name url faqs].sort)
     end
 
     it 'returns resource with only 5 faqs' do

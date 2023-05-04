@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory(:resource) do
     name { Faker::Name.name }
-    summary { Faker::Lorem.sentences.join(" ") }
+    url { Faker::Internet.url }
   end
 end

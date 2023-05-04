@@ -7,7 +7,7 @@ const BTN_STATES = {
   inflight: "inflight",
 };
 
-export default function Header() {
+export default function Header({ suffix }) {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
   const [btnState, setBtnState] = useState(BTN_STATES.disabled);
@@ -40,8 +40,8 @@ export default function Header() {
 
   return (
     <header className="flex align-item justify-center flex-col items-center">
-      <h1 className="text-6xl leading-none font-extrabold tracking-tight text-gray-900">
-        Ask PDF
+      <h1 className="text-5xl leading-none font-extrabold tracking-tight text-gray-900">
+        Ask PDF {suffix && <span className="text-blue-700">{suffix}</span>}
       </h1>
       <h2 className="text-xl leading-7 font-normal max-w-screen-md text-center mt-5 text-gray-500">
         Proof of concept of interactively debugging problems in your physical

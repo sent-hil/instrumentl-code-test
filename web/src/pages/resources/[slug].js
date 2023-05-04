@@ -1,54 +1,53 @@
-import Header from "@/components/header";
-import { PRODUCTS } from "@/data/products";
-
+import { Inter } from "next/font/google";
 import { Disclosure } from "@headlessui/react";
 
-import { Inter } from "next/font/google";
+import Header from "@/components/header";
+import { httpClient } from "@/utils/http";
+
 const inter = Inter({ subsets: ["latin"] });
 
-// TODO: make call to API to return list of product slugs
 export async function getStaticPaths() {
-  const productPaths = PRODUCTS.map((product) => {
+  try {
+    const response = await httpClient.get("/resources");
+    const productPaths = response.data.map((product) => {
+      return {
+        params: {
+          slug: product.slug,
+        },
+      };
+    });
+
     return {
-      params: {
-        slug: product.slug,
-      },
+      paths: productPaths,
+      fallback: false,
     };
-  });
-  return {
-    paths: productPaths,
-    fallback: false,
-  };
+  } catch (error) {
+    console.log("Error fetching paths.");
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
 }
 
 // TODO: make call to API to return list of products and their faqs
 export async function getStaticProps(context) {
-  // TODO: get faqs from database.
-  return {
-    props: {
-      resource: {
-        slug: context.params.slug,
-        faqs: [
-          {
-            question: "How do I clean the lens?",
-            answer:
-              "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-          },
-          {
-            question: "How do you make holy water?",
-            answer:
-              "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-          },
-        ],
+  try {
+    const response = await httpClient.get(`/resources/${context.params.slug}`);
+    return {
+      props: {
+        resource: response.data,
       },
-    },
-  };
+    };
+  } catch (error) {
+    return {};
+  }
 }
 
 export default function Resource({ resource }) {
   return (
     <main className={`${inter.className} max-w-3xl`}>
-      <Header />
+      <Header suffix={resource.name} />
       <h1 className="text-4xl leading-10 font-extrabold mt-20 text-center">
         Frequently Asked Questions
       </h1>

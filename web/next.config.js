@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-};
+
+console.log(`${process.env.NEXT_PUBLIC_API_URL}/:path*`);
 
 module.exports = {
   reactStrictMode: true,
@@ -9,7 +8,7 @@ module.exports = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://localhost:3000/:path*",
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
       },
     ];
   },

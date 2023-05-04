@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export default function ListOfProducts({ products }) {
+  console.log(products);
   return (
     <section className="max-w-3xl m-8 mt-20">
       <div>
@@ -13,14 +14,31 @@ export default function ListOfProducts({ products }) {
       </div>
       <div className="grid gap-4 mt-8 grid-cols-2">
         {products.map((p) => (
-          <Link
-            className="leading-6 font-medium text-blue-600 hover:underline"
-            key={p.name}
-            href={`/resources/${p.slug}`}
-            target="_blank"
-          >
-            {p.name}
-          </Link>
+          <div className="flex space-x-1 items-center" key={p.name}>
+            <Link
+              className="leading-6 font-medium text-blue-600 hover:underline"
+              href={`/resources/${p.slug}`}
+              target="_blank"
+            >
+              {p.name}
+            </Link>
+            <a href={p.url}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+                />
+              </svg>
+            </a>
+          </div>
         ))}
       </div>
     </section>

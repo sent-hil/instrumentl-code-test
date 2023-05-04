@@ -1,7 +1,7 @@
 class ResourcesController < ApplicationController
   def index
     resources = Resource.order(:created_at).limit(5)
-    render json: resources.to_json(only: %i[slug name])
+    render json: resources.to_json(only: %i[slug name url])
   end
 
   def show

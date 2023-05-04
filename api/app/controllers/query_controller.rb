@@ -6,7 +6,7 @@ class QueryController < ApplicationController
                     json: { error: 'Missing query parameter' }
     end
 
-    result = ::AnsweringService.new(open_ai:, pinecone:).run(q)
+    result = AnsweringService.new(llm: open_ai, vector_db: pinecone).run(q)
 
     render status: :ok,
            json: { error: nil, response: result }

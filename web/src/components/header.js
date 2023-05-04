@@ -7,6 +7,7 @@ const BTN_STATES = {
   inflight: "inflight",
 };
 
+// TODO: this a mess, needs a refactor.
 export default function Header({ suffix }) {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
@@ -35,6 +36,11 @@ export default function Header({ suffix }) {
       .then((response) => {
         setAnswer(response.data.response);
         setBtnState(BTN_STATES.enabled);
+      })
+      .catch(function (error) {
+        setBtnState(BTN_STATES.enabled);
+        setAnswer("I'm sorry, something went wrong. Please try again.");
+        console.log(error);
       });
   }
 

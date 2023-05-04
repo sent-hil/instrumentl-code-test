@@ -8,6 +8,8 @@ class QueryController < ApplicationController
 
     result = AnsweringService.new(llm: open_ai, vector_db: pinecone).run(q)
 
+    puts result
+
     render status: :ok,
            json: { error: nil, response: result }
   end

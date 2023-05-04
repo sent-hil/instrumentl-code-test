@@ -34,5 +34,5 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: API_KEY
+      - key: NEXT_PUBLIC_API_URL
         value: https://instrumentl-api.onrender.com

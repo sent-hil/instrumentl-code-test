@@ -8,6 +8,13 @@ import { PRODUCTS } from "@/data/products";
 
 // TODO: make call to API to return list of products
 export async function getStaticProps(context) {
+  try {
+    const response = await axios.get("/api/resources");
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+
   return {
     props: { products: PRODUCTS },
   };

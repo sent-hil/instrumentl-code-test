@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function ListOfProducts({ products }) {
   return (
-    <section className="max-w-3xl m-8">
-      <div class>
+    <section className="max-w-3xl m-8 mt-20">
+      <div>
         <h1 className="leading-6 font-medium text-gray-900">
           The system is trained on the manuals of following products.
         </h1>

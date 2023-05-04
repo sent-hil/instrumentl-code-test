@@ -74,7 +74,7 @@ def process_pdf(path):
 
     save_embeddings(pdf_contents, metadatas)
 
-    front_of_pdf = " ".join(x for x in pdf_contents)[0:20000]
+    front_of_pdf = " ".join(x for x in pdf_contents)[0:15000]
     get_questions(front_of_pdf)
 
 
@@ -90,3 +90,4 @@ if __name__ == "__main__":
             print(f"Processed {pdf_path}.\n")
         except Exception as ex:
             print(f"\tSomething went wrong, processing {pdf_path}.\n")
+            raise (ex)

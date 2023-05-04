@@ -1,6 +1,6 @@
 require 'pinecone'
 
-PINECONE_ENVIRONMENT = 'us-west1-gcp-free'.freeze
+PINECONE_ENVIRONMENT = 'us-west1-gcp'.freeze
 
 Pinecone.configure do |config|
   config.api_key = Rails.application.credentials.pinecone[:api_key]

@@ -1,5 +1,5 @@
 class ResourceFaq < ApplicationRecord
-  belongs_to :resource
+  belongs_to :resource, dependent: :destroy
 
   validates_numericality_of :priority
 

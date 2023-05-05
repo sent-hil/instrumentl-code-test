@@ -51,14 +51,13 @@ export default function Header({ suffix }) {
       </h1>
       <h2 className="text-xl leading-7 font-normal max-w-screen-md text-center mt-5 text-gray-500">
         Proof of concept of interactively debugging problems in your physical
-        products. The system has been trained on a limited number of products
-        only.
+        products.
       </h2>
       <div className="max-w-xl">
         <form className="flex mt-10" onSubmit={onSubmit}>
           <input
             className="placeholder:text-slate-400 block bg-white w-full border border-gray-300 rounded-md py-2 pl-3 shadow-sm focus:outline-none focus:border-gray-200 focus:ring-gray-300 focus:ring-1"
-            placeholder="How do I clean the lens?"
+            placeholder="How do I clean fujifilm lens?"
             type="text"
             name="search"
             size="50"

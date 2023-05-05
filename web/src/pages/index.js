@@ -1,19 +1,19 @@
+import { Inter } from "next/font/google";
+
 import Header from "@/components/header";
 import ListOfProducts from "@/components/listOfProducts";
-
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
-
 import { httpClient } from "@/utils/http";
 
-export async function getStaticProps(context) {
+const inter = Inter({ subsets: ["latin"] });
+
+export async function getStaticProps(_) {
   try {
     const response = await httpClient.get("/resources");
     return {
       props: { products: response.data },
     };
   } catch (error) {
-    console.error(error);
+    console.error("ERROR: fetching /resoures from API", error);
     return {
       props: { products: [] },
     };

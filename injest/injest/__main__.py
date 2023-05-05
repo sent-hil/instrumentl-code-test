@@ -72,7 +72,7 @@ def process_pdf(path):
         name = os.path.splitext(filename)[0]
         metadatas.append({"resource": name, "page_number": i + 1})
 
-    # save_embeddings(pdf_contents, metadatas)
+    save_embeddings(pdf_contents, metadatas)
 
     joined = " ".join(x for x in pdf_contents)
     m = joined[5000 : min(len(joined), 15000)]  # skip table of contents etc.
@@ -83,7 +83,7 @@ def process_pdf(path):
     # of PDFs that doesn't fail.
     #
     # Could also limitation of gpt-3-turbo model, the chatgpt model which I can only
-    # access from the UI fares lot better.
+    # access from the UI works perfectly.
     # get_questions(m)
 
 

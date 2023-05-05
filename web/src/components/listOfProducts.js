@@ -21,7 +21,7 @@ export default function ListOfProducts({ products }) {
             >
               {p.name}
             </Link>
-            <a href={p.url}>
+            <a href={p.url} target="_blank">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

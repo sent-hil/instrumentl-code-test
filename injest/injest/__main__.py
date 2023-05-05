@@ -72,10 +72,19 @@ def process_pdf(path):
         name = os.path.splitext(filename)[0]
         metadatas.append({"resource": name, "page_number": i + 1})
 
-    save_embeddings(pdf_contents, metadatas)
+    # save_embeddings(pdf_contents, metadatas)
 
-    front_of_pdf = " ".join(x for x in pdf_contents)[0:15000]
-    get_questions(front_of_pdf)
+    joined = " ".join(x for x in pdf_contents)
+    m = joined[5000 : min(len(joined), 15000)]  # skip table of contents etc.
+
+    # TODO: sometimes this fails on certain PDFs, my guess is OpenAI doesn't return
+    # a response, but langchain.LLMChain expects an answer so it errors out. The fix
+    # would be use a different model from langchain or figure out how to send parts
+    # of PDFs that doesn't fail.
+    #
+    # Could also limitation of gpt-3-turbo model, the chatgpt model which I can only
+    # access from the UI fares lot better.
+    # get_questions(m)
 
 
 if __name__ == "__main__":
@@ -90,4 +99,3 @@ if __name__ == "__main__":
             print(f"Processed {pdf_path}.\n")
         except Exception as ex:
             print(f"\tSomething went wrong, processing {pdf_path}.\n")
-            raise (ex)

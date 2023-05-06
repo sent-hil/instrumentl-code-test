@@ -74,16 +74,11 @@ def process_pdf(path):
 
     save_embeddings(pdf_contents, metadatas)
 
-    joined = " ".join(x for x in pdf_contents)
-    m = joined[5000 : min(len(joined), 15000)]  # skip table of contents etc.
-
-    # TODO: sometimes this fails on certain PDFs, my guess is OpenAI doesn't return
-    # a response, but langchain.LLMChain expects an answer so it errors out. The fix
-    # would be use a different model from langchain or figure out how to send parts
-    # of PDFs that doesn't fail.
+    # TODO: sometimes this fails on certain PDFs. One fix is to chunk PDFs in a way that's
+    # gpt-3.5-turbo model can reliably parse or get API access to the newer chatgpt model.
     #
-    # Could also limitation of gpt-3-turbo model, the chatgpt model which I can only
-    # access from the UI works perfectly.
+    # joined = " ".join(x for x in pdf_contents)
+    # m = joined[5000 : min(len(joined), 15000)]  # skip table of contents etc.
     # get_questions(m)
 
 

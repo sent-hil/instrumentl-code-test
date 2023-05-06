@@ -1,4 +1,6 @@
 class QueryController < ApplicationController
+  PINECONE_INDEX_NAME = 'instrumentl-code-test-1'.freeze
+
   def query
     q = params[:query]
     if q.blank?
@@ -13,7 +15,7 @@ class QueryController < ApplicationController
     render status: :ok,
            json: { error: nil, response: result }
   rescue StandardError => e
-    puts('>>>>>>>> ERROR:', e)
+    puts('ERROR:', e)
 
     render status: :internal_server_error,
            json: { error: e.class.name, response: nil }
@@ -22,13 +24,13 @@ class QueryController < ApplicationController
   private
 
   def open_ai
-    OpenAI::Client.new(
+    OpenAIClient.new(
       access_token: Rails.application.credentials.open_ai[:api_key],
       uri_base: Rails.application.credentials.helicone[:api_url]
     )
   end
 
   def pinecone
-    Pinecone::Client.new
+    PineconeClient.new(PINECONE_INDEX_NAME)
   end
 end

@@ -7,41 +7,42 @@ import { httpClient } from "@/utils/http";
 const inter = Inter({ subsets: ["latin"] });
 
 export async function getStaticPaths() {
+  let paths = [];
+
   try {
     const response = await httpClient.get("/resources");
-    const productPaths = response.data.map((product) => {
+    paths = response.data.map((product) => {
       return {
         params: {
           slug: product.slug,
         },
       };
     });
-
-    return {
-      paths: productPaths,
-      fallback: false,
-    };
   } catch (error) {
-    console.log("Error fetching paths.");
-    return {
-      paths: [],
-      fallback: false,
-    };
+    console.log("ERROR: fetching paths for /resources/:slug");
   }
+
+  return {
+    paths: paths,
+    fallback: false,
+  };
 }
 
-// TODO: make call to API to return list of products and their faqs
 export async function getStaticProps(context) {
+  let resource = {};
+
   try {
     const response = await httpClient.get(`/resources/${context.params.slug}`);
-    return {
-      props: {
-        resource: response.data,
-      },
-    };
+    resource = response.data;
   } catch (error) {
-    return {};
+    console.log("ERROR: fetching data for /resources/:slug");
   }
+
+  return {
+    props: {
+      resource: resource,
+    },
+  };
 }
 
 export default function Resource({ resource }) {

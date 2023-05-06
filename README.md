@@ -7,18 +7,18 @@ This is Senthil's submission for the Engineering code test. The user requirement
 
 ## How it works?
 
-`injest` contains a Python script which is used to preprocess the PDFs. It divides the PDFs into short chunks, gets embeddings for each chunk from OpenAI and stores that in the Pinecone database for later use.
+`injest` contains a Python script which is used to preprocess the PDFs in `injest/assets` folder. It divides the PDFs into short chunks, gets embeddings for each chunk from OpenAI API and stores the embeddings and text in Pinecone database through API.
 
-When user asks a question from the Web service, the API finds the relevant docs from Pinecone and sends those docs , along with a prompt to OpenAI which returns an answer that's shown to the user.0
+When user asks a question from the Web service, the API finds the relevant docs from Pinecone and sends those docs, along with a prompt to OpenAI API which returns an answer that's shown to the user.
 
 ## Technical Requirements:
 
 * Services based architecture
   * Frontend in NextJS
   * Backend in Rails
-* PostgresSQL as relational data
-* Pinecone for vectors
+* PostgresSQL for storing relational data
+* Pinecone for storing vectors
 * OpenAI for LLM
-* Deployed on render.com
+* Deploy on render.com
 
-The site is deployed on Render at https://instrumentl-web.onrender.com.
+The site is deployed on Render at https://instrumentl-web.onrender.com. I made a short loom explaning the site here: https://www.loom.com/share/b13fafa78d5245489b23e64113237661
